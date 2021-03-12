@@ -127,6 +127,16 @@ var NormalModeCommands = {
     HUD.pasteFromClipboard(url => chrome.runtime.sendMessage({ handler: "openUrlInCurrentTab", url }));
   },
 
+  openVomnibarInNewTab(count) {
+    var selection = window.getSelection().toString();
+    Vomnibar.open(0, {query: selection, newTab: true})
+  },
+
+  openVomnibarInCurrentTab() {
+    var selection = window.getSelection().toString();
+    Vomnibar.open(0, {query: selection})
+  },
+
   // Mode changes.
   enterInsertMode() {
     // If a focusable element receives the focus, then we exit and leave the permanently-installed insert-mode
