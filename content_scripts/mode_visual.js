@@ -410,8 +410,8 @@ VisualMode.prototype.movements = {
 
   "y"() { return this.yank(); },
   "Y"(count) { this.movement.selectLine(count); return this.yank(); },
-  "p"() { return chrome.runtime.sendMessage({handler: "openUrlInCurrentTab", url: this.yank()}); },
-  "P"() { return chrome.runtime.sendMessage({handler: "openUrlInNewTab", url: this.yank()}); },
+  "p"() { Vomnibar.open(0, {query: this.yank()}); },
+  "P"() { Vomnibar.open(0, {query: this.yank(), newTab:true}); },
   "v"() { return new VisualMode; },
   "V"() { return new VisualLineMode; },
   "c"() {
