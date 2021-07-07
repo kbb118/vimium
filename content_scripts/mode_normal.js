@@ -129,12 +129,12 @@ var NormalModeCommands = {
 
   openVomnibarInNewTab(count) {
     var selection = window.getSelection().toString();
-    Vomnibar.open(0, {query: selection, newTab: true})
+    Vomnibar.open(0, {caretPos: 0, query: selection, newTab: true})
   },
 
   openVomnibarInCurrentTab() {
     var selection = window.getSelection().toString();
-    Vomnibar.open(0, {query: selection})
+    Vomnibar.open(0, {caretPos: 0, query: selection})
   },
 
   // Mode changes.

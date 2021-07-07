@@ -7,6 +7,7 @@ const Vomnibar = {
   vomnibarUI: null, // the dialog instance for this window
   getUI() { return this.vomnibarUI; },
   completers: {},
+  caretPosAtFirst: -1,
 
   getCompleter(name) {
     if (!this.completers[name])
@@ -20,10 +21,13 @@ const Vomnibar = {
       query: "",
       newTab: false,
       selectFirst: false,
+      caretPos: -1,
       keyword: null
     };
     Object.assign(options, userOptions);
     Object.assign(options, {refreshInterval: options.completer === "omni" ? 150 : 0});
+
+    caretPosAtFirst = options.caretPos;
 
     const completer = this.getCompleter(options.completer);
     if (this.vomnibarUI == null)
@@ -331,6 +335,11 @@ class VomnibarUI {
     }
 
     this.input.focus();
+    if ( caretPosAtFirst != -1 )
+    {
+      this.input.selectionEnd = caretPosAtFirst;
+      caretPosAtFirst = -1;
+    }
   }
 
   initDom() {
